@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/Emaan-Chaudhary/notes-webapp.git
     targetRevision: main
-    path: k8s/base
+    path: k8s
 
   destination:
     server: https://kubernetes.default.svc
