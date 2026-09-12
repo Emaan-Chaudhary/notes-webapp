@@ -1,6 +1,5 @@
-version: '3.8'
-
 services:
+
   backend:
     build: ./backend
     container_name: napp-backend
@@ -8,6 +7,8 @@ services:
       - "${PORT:-5000}:5000"
     env_file:
       - .env
+    depends_on:
+      - mongodb
     restart: always
 
   frontend:
@@ -18,3 +19,27 @@ services:
     depends_on:
       - backend
     restart: always
+
+  mongodb:
+    image: mongo:8
+    container_name: napp-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    restart: always
+
+  mongo-express:
+    image: mongo-express:latest
+    container_name: napp-mongo-express
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_URL: mongodb://mongodb:27017/
+      ME_CONFIG_BASICAUTH_ENABLED: "false"
+    depends_on:
+      - mongodb
+    restart: always
+
+volumes:
+  mongodb_data:

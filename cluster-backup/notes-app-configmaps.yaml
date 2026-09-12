@@ -1,0 +1,53 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  data:
+    MONGODB_URI: mongodb://mongodb:27017/notesdb
+    PORT: "5000"
+  kind: ConfigMap
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","data":{"MONGODB_URI":"mongodb://mongodb:27017/notesdb","PORT":"5000"},"kind":"ConfigMap","metadata":{"annotations":{},"name":"backend-config","namespace":"notes-app"}}
+    creationTimestamp: "2026-09-04T17:43:44Z"
+    name: backend-config
+    namespace: notes-app
+    resourceVersion: "923611"
+    uid: 0042ee81-1a74-4e98-983b-64304cca9332
+- apiVersion: v1
+  data:
+    ca.crt: |
+      -----BEGIN CERTIFICATE-----
+      MIIDBTCCAe2gAwIBAgIIcQtha+g7uqQwDQYJKoZIhvcNAQELBQAwFTETMBEGA1UE
+      AxMKa3ViZXJuZXRlczAeFw0yNjA2MTIxNTUzMTNaFw0zNjA2MDkxNTU4MTNaMBUx
+      EzARBgNVBAMTCmt1YmVybmV0ZXMwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
+      AoIBAQCmNTDKiRugjLegB6K4w/vnIc22lw0GKnFibjharvCZCZNC2LdIut2E7dQW
+      5+UsYgiLmzDV4KHLBdhwcYdkYJjCPnXkBd4jxK143ccMQkdpIn5dOw2QtNRf1YN7
+      8CUBDfuIu0npHRncg39M+4L35Eexk0DCpuPO8egexK6+3+uxSHEvv9rphZM14TJo
+      eJFwCgxJGXzk724751iNKWI9d6r4u3OjIDbeK5gt4SjXpcGBG48N9e+ozoujxlDX
+      TSIiAOqYiZhWUzgmLkGEKAJQHCvdZCo4ckh7demGonf07e6XitXSokWf0IUYwk/g
+      jFghJif8KRXgO2dQHmrQ4/d/LyCVAgMBAAGjWTBXMA4GA1UdDwEB/wQEAwICpDAP
+      BgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBTeFwUZl3tF3ZQItNUxajx+hd6owjAV
+      BgNVHREEDjAMggprdWJlcm5ldGVzMA0GCSqGSIb3DQEBCwUAA4IBAQBLCZzMA0+u
+      N3REeFstUW1hnXRgITyXBvPsFY2RsXo8Dyl18q6SDo5DQKdu196np8JL/tLFU7wL
+      dPb5IxkyJHRp/TPJHfhy1Qodx5mDfY406Vvs5UHg7V3TNvz3++7EOI/lLWbFPPn+
+      dyf3H8U1vwkZWM0Jyl9t3sUXjGE5eY95bT/Cljki2PT7Sn8YRDBw1/kajkd4CZmu
+      KREdVXql2VOKqygdZ9k08IbfBsTXooPIa/jwNtl0CMzK2DxbgKV1dDrZenml+4Qx
+      SpQ2ouuP5YyezQsPPbx3O1fomwiuEa4quIxEos/bQz1KOnUaLBTHRBw/gMcahQbh
+      6TswiW1N0y32
+      -----END CERTIFICATE-----
+  kind: ConfigMap
+  metadata:
+    annotations:
+      kubernetes.io/description: Contains a CA bundle that can be used to verify the
+        kube-apiserver when using internal endpoints such as the internal service
+        IP or kubernetes.default.svc. No other usage is guaranteed across distributions
+        of Kubernetes clusters.
+    creationTimestamp: "2026-09-04T00:46:34Z"
+    name: kube-root-ca.crt
+    namespace: notes-app
+    resourceVersion: "900825"
+    uid: 2adbc705-6a73-44ca-8aac-bd61aef5cb59
+kind: List
+metadata:
+  resourceVersion: ""

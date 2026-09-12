@@ -1,0 +1,1920 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/restartedAt: "2026-09-04T22:44:58+05:00"
+    creationTimestamp: "2026-09-04T17:44:58Z"
+    generateName: backend-6b85c4dc48-
+    generation: 1
+    labels:
+      app: backend
+      pod-template-hash: 6b85c4dc48
+    name: backend-6b85c4dc48-qtj4w
+    namespace: notes-app
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: backend-6b85c4dc48
+      uid: 3d93800d-80ec-4d6f-9720-4f4e5188cfb0
+    resourceVersion: "936741"
+    uid: 5ff24f1d-5890-404e-96f4-6b99d58498ea
+  spec:
+    containers:
+    - envFrom:
+      - configMapRef:
+          name: config.yaml
+      - secretRef:
+          name: secret.yaml
+      image: emaanchaudhary/notes-webapp-backend:latest
+      imagePullPolicy: Always
+      name: backend
+      ports:
+      - containerPort: 5000
+        protocol: TCP
+      resources:
+        limits:
+          cpu: 500m
+          memory: 256Mi
+        requests:
+          cpu: 100m
+          memory: 128Mi
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-t2cqh
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: emaan-cluster-worker2
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-t2cqh
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-06T08:33:18Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-04T17:44:58Z"
+      observedGeneration: 1
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-04T17:44:58Z"
+      message: 'containers with unready status: [backend]'
+      observedGeneration: 1
+      reason: ContainersNotReady
+      status: "False"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-04T17:44:58Z"
+      message: 'containers with unready status: [backend]'
+      observedGeneration: 1
+      reason: ContainersNotReady
+      status: "False"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-04T17:44:58Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - image: emaanchaudhary/notes-webapp-backend:latest
+      imageID: ""
+      lastState: {}
+      name: backend
+      ready: false
+      restartCount: 0
+      started: false
+      state:
+        waiting:
+          message: configmap "config.yaml" not found
+          reason: CreateContainerConfigError
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-t2cqh
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 172.19.0.2
+    hostIPs:
+    - ip: 172.19.0.2
+    observedGeneration: 1
+    phase: Pending
+    podIP: 10.244.1.5
+    podIPs:
+    - ip: 10.244.1.5
+    qosClass: Burstable
+    startTime: "2026-09-04T17:44:58Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: "2026-09-04T14:13:38Z"
+    generateName: backend-6c7b54749f-
+    generation: 1
+    labels:
+      app: backend
+      pod-template-hash: 6c7b54749f
+    name: backend-6c7b54749f-2wrl7
+    namespace: notes-app
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: backend-6c7b54749f
+      uid: 92122c1e-1e42-4c89-942e-0e7fbf8433b7
+    resourceVersion: "934836"
+    uid: 54b69ea9-af99-40d6-a4f7-b395cbe27e70
+  spec:
+    containers:
+    - env:
+      - name: PORT
+        value: "5000"
+      - name: MONGODB_URI
+        value: mongodb://mongodb:27017/notesdb
+      - name: JWT_SECRET
+        value: notes
+      image: emaanchaudhary/notes-webapp-backend:latest
+      imagePullPolicy: Always
+      name: backend
+      ports:
+      - containerPort: 5000
+        protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-f87ks
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: emaan-cluster-worker
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-f87ks
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-06T08:33:18Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-04T14:13:38Z"
+      observedGeneration: 1
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-06T08:34:05Z"
+      observedGeneration: 1
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-06T08:34:05Z"
+      observedGeneration: 1
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-04T14:13:38Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://aaa5aea9bda6f78cb71662aa65d7e2f40b5b1b0a8fc24ae9b930f13d569d28d2
+      image: docker.io/emaanchaudhary/notes-webapp-backend:latest
+      imageID: docker.io/emaanchaudhary/notes-webapp-backend@sha256:fe5b52bad443f25ce059dd7325af4fa9833f9a67ab4a06820921c75cf57e67e6
+      lastState:
+        terminated:
+          containerID: containerd://4ae708ac7e0951282b570a1f5fae601da571546735ce12fdb849ab4d5c9cdac3
+          exitCode: 1
+          finishedAt: "2026-09-06T08:33:50Z"
+          reason: Error
+          startedAt: "2026-09-06T08:33:17Z"
+      name: backend
+      ready: true
+      resources: {}
+      restartCount: 16
+      started: true
+      state:
+        running:
+          startedAt: "2026-09-06T08:34:04Z"
+      user:
+        linux:
+          gid: 0
+          supplementalGroups:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 6
+          - 10
+          - 11
+          - 20
+          - 26
+          - 27
+          uid: 0
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-f87ks
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 172.19.0.4
+    hostIPs:
+    - ip: 172.19.0.4
+    observedGeneration: 1
+    phase: Running
+    podIP: 10.244.2.3
+    podIPs:
+    - ip: 10.244.2.3
+    qosClass: BestEffort
+    startTime: "2026-09-04T14:13:38Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: "2026-09-04T14:13:38Z"
+    generateName: backend-6c7b54749f-
+    generation: 1
+    labels:
+      app: backend
+      pod-template-hash: 6c7b54749f
+    name: backend-6c7b54749f-qz8nk
+    namespace: notes-app
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: backend-6c7b54749f
+      uid: 92122c1e-1e42-4c89-942e-0e7fbf8433b7
+    resourceVersion: "934845"
+    uid: 4f0a23e1-546d-4267-98d6-5d69641bcdcd
+  spec:
+    containers:
+    - env:
+      - name: PORT
+        value: "5000"
+      - name: MONGODB_URI
+        value: mongodb://mongodb:27017/notesdb
+      - name: JWT_SECRET
+        value: notes
+      image: emaanchaudhary/notes-webapp-backend:latest
+      imagePullPolicy: Always
+      name: backend
+      ports:
+      - containerPort: 5000
+        protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-rcksr
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: emaan-cluster-worker2
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-rcksr
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-06T08:33:16Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-04T14:13:38Z"
+      observedGeneration: 1
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-06T08:34:07Z"
+      observedGeneration: 1
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-06T08:34:07Z"
+      observedGeneration: 1
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-04T14:13:38Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://016a5b759777ca13a9a4dde7c69657815b7496a073d7ba4f7f49cac320be45cd
+      image: docker.io/emaanchaudhary/notes-webapp-backend:latest
+      imageID: docker.io/emaanchaudhary/notes-webapp-backend@sha256:fe5b52bad443f25ce059dd7325af4fa9833f9a67ab4a06820921c75cf57e67e6
+      lastState:
+        terminated:
+          containerID: containerd://19135eaac472c2c756d0f7a4c7ff892125d3b79e0ac330bea09d3f722a7b215e
+          exitCode: 1
+          finishedAt: "2026-09-06T08:33:49Z"
+          reason: Error
+          startedAt: "2026-09-06T08:33:16Z"
+      name: backend
+      ready: true
+      resources: {}
+      restartCount: 14
+      started: true
+      state:
+        running:
+          startedAt: "2026-09-06T08:34:06Z"
+      user:
+        linux:
+          gid: 0
+          supplementalGroups:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 6
+          - 10
+          - 11
+          - 20
+          - 26
+          - 27
+          uid: 0
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-rcksr
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 172.19.0.2
+    hostIPs:
+    - ip: 172.19.0.2
+    observedGeneration: 1
+    phase: Running
+    podIP: 10.244.1.4
+    podIPs:
+    - ip: 10.244.1.4
+    qosClass: BestEffort
+    startTime: "2026-09-04T14:13:38Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/restartedAt: "2026-09-04T22:07:23+05:00"
+    creationTimestamp: "2026-09-04T17:07:31Z"
+    generateName: frontend-669cdc49f9-
+    generation: 1
+    labels:
+      app: frontend
+      pod-template-hash: 669cdc49f9
+    name: frontend-669cdc49f9-wg89w
+    namespace: notes-app
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: frontend-669cdc49f9
+      uid: bbffab0f-6ef5-4b99-ab42-93e13c0dd0ed
+    resourceVersion: "934881"
+    uid: 669d03ca-993b-4b05-8fcc-0dcabbf96f11
+  spec:
+    containers:
+    - image: emaanchaudhary/notes-webapp-frontend:latest
+      imagePullPolicy: Always
+      name: frontend
+      ports:
+      - containerPort: 80
+        protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-bk696
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: emaan-cluster-worker
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-bk696
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-06T08:33:20Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-04T17:07:31Z"
+      observedGeneration: 1
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-06T08:34:16Z"
+      observedGeneration: 1
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-06T08:34:16Z"
+      observedGeneration: 1
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-04T17:07:31Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://704c2000a4582d1b4c9ff35fba875f2853440b03e3fe705d43002c39c8950744
+      image: docker.io/emaanchaudhary/notes-webapp-frontend:latest
+      imageID: docker.io/emaanchaudhary/notes-webapp-frontend@sha256:27fd865dce3c16b6b6aeb4d03815bb069886cce1540a14571e675b12a0ae6460
+      lastState:
+        terminated:
+          containerID: containerd://940cade127cfbbb2cdea0ddb45603dbe5bc03c5e2d05825affe5fccf7a475dbb
+          exitCode: 1
+          finishedAt: "2026-09-06T08:33:44Z"
+          reason: Error
+          startedAt: "2026-09-06T08:33:39Z"
+      name: frontend
+      ready: true
+      resources: {}
+      restartCount: 8
+      started: true
+      state:
+        running:
+          startedAt: "2026-09-06T08:34:16Z"
+      user:
+        linux:
+          gid: 0
+          supplementalGroups:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 6
+          - 10
+          - 11
+          - 20
+          - 26
+          - 27
+          uid: 0
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-bk696
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 172.19.0.4
+    hostIPs:
+    - ip: 172.19.0.4
+    observedGeneration: 1
+    phase: Running
+    podIP: 10.244.2.5
+    podIPs:
+    - ip: 10.244.2.5
+    qosClass: BestEffort
+    startTime: "2026-09-04T17:07:31Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/restartedAt: "2026-09-04T22:07:23+05:00"
+    creationTimestamp: "2026-09-04T17:07:23Z"
+    generateName: frontend-669cdc49f9-
+    generation: 1
+    labels:
+      app: frontend
+      pod-template-hash: 669cdc49f9
+    name: frontend-669cdc49f9-wkfs4
+    namespace: notes-app
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: frontend-669cdc49f9
+      uid: bbffab0f-6ef5-4b99-ab42-93e13c0dd0ed
+    resourceVersion: "934894"
+    uid: 2df984ad-71f9-4b02-92cf-064653e96d07
+  spec:
+    containers:
+    - image: emaanchaudhary/notes-webapp-frontend:latest
+      imagePullPolicy: Always
+      name: frontend
+      ports:
+      - containerPort: 80
+        protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-kjtsb
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: emaan-cluster-worker2
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-kjtsb
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-06T08:33:21Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-04T17:07:23Z"
+      observedGeneration: 1
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-06T08:34:19Z"
+      observedGeneration: 1
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-06T08:34:19Z"
+      observedGeneration: 1
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-04T17:07:23Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://d0ae549ad770a38d65853eae194c1a53ce905867e2979b0b5f0e54ef8a61fda8
+      image: docker.io/emaanchaudhary/notes-webapp-frontend:latest
+      imageID: docker.io/emaanchaudhary/notes-webapp-frontend@sha256:27fd865dce3c16b6b6aeb4d03815bb069886cce1540a14571e675b12a0ae6460
+      lastState:
+        terminated:
+          containerID: containerd://ba76fa81ef52fdbca112169cb92f055b2d795f3e2cf0f6923b6954a60534d2de
+          exitCode: 1
+          finishedAt: "2026-09-06T08:33:47Z"
+          reason: Error
+          startedAt: "2026-09-06T08:33:42Z"
+      name: frontend
+      ready: true
+      resources: {}
+      restartCount: 9
+      started: true
+      state:
+        running:
+          startedAt: "2026-09-06T08:34:18Z"
+      user:
+        linux:
+          gid: 0
+          supplementalGroups:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 6
+          - 10
+          - 11
+          - 20
+          - 26
+          - 27
+          uid: 0
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-kjtsb
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 172.19.0.2
+    hostIPs:
+    - ip: 172.19.0.2
+    observedGeneration: 1
+    phase: Running
+    podIP: 10.244.1.3
+    podIPs:
+    - ip: 10.244.1.3
+    qosClass: BestEffort
+    startTime: "2026-09-04T17:07:23Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: "2026-09-04T14:53:54Z"
+    generateName: mongo-express-d9d8cbf9f-
+    generation: 1
+    labels:
+      app: mongo-express
+      pod-template-hash: d9d8cbf9f
+    name: mongo-express-d9d8cbf9f-6r547
+    namespace: notes-app
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: mongo-express-d9d8cbf9f
+      uid: a8c17fed-0ac8-4821-9b0e-93134ae27791
+    resourceVersion: "934580"
+    uid: bd210d8e-eb73-409d-a031-fc40f26a8b2f
+  spec:
+    containers:
+    - env:
+      - name: ME_CONFIG_MONGODB_URL
+        value: mongodb://mongodb:27017/
+      - name: ME_CONFIG_BASICAUTH_ENABLED
+        value: "false"
+      image: mongo-express:latest
+      imagePullPolicy: Always
+      name: mongo-express
+      ports:
+      - containerPort: 8081
+        protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-tpgxx
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: emaan-cluster-worker
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-tpgxx
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-06T08:33:17Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-04T14:53:54Z"
+      observedGeneration: 1
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-06T08:33:17Z"
+      observedGeneration: 1
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-06T08:33:17Z"
+      observedGeneration: 1
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-04T14:53:54Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://8e4b7aee60cc6de1dce4b5c1e23e4c3e0afc3d9e8d2d8ca5999e0aeb05eac3ae
+      image: docker.io/library/mongo-express:latest
+      imageID: docker.io/library/mongo-express@sha256:1b23d7976f0210dbec74045c209e52fbb26d29b2e873d6c6fa3d3f0ae32c2a64
+      lastState:
+        terminated:
+          containerID: containerd://f848f82173606554e0426ce39897ded4e11cbb35ca42f38e0c51c464a244a2d6
+          exitCode: 255
+          finishedAt: "2026-09-06T08:33:01Z"
+          reason: Unknown
+          startedAt: "2026-09-05T17:17:32Z"
+      name: mongo-express
+      ready: true
+      resources: {}
+      restartCount: 3
+      started: true
+      state:
+        running:
+          startedAt: "2026-09-06T08:33:16Z"
+      user:
+        linux:
+          gid: 0
+          supplementalGroups:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 6
+          - 10
+          - 11
+          - 20
+          - 26
+          - 27
+          uid: 0
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-tpgxx
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 172.19.0.4
+    hostIPs:
+    - ip: 172.19.0.4
+    observedGeneration: 1
+    phase: Running
+    podIP: 10.244.2.2
+    podIPs:
+    - ip: 10.244.2.2
+    qosClass: BestEffort
+    startTime: "2026-09-04T14:53:54Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: "2026-09-04T14:31:25Z"
+    generateName: mongodb-85764464db-
+    generation: 1
+    labels:
+      app: mongodb
+      pod-template-hash: 85764464db
+    name: mongodb-85764464db-gt5bk
+    namespace: notes-app
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: mongodb-85764464db
+      uid: 3ea5c6be-43c3-40eb-89c9-d3bb8e3e5274
+    resourceVersion: "934564"
+    uid: 7d30ad90-7538-41d5-a560-de99be944cd2
+  spec:
+    containers:
+    - image: mongo:8
+      imagePullPolicy: IfNotPresent
+      name: mongodb
+      ports:
+      - containerPort: 27017
+        protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /data/db
+        name: mongodb-storage
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-m88bz
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: emaan-cluster-worker
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: mongodb-storage
+      persistentVolumeClaim:
+        claimName: mongodb-pvc
+    - name: kube-api-access-m88bz
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-06T08:33:16Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-04T14:31:29Z"
+      observedGeneration: 1
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-06T08:33:16Z"
+      observedGeneration: 1
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-06T08:33:16Z"
+      observedGeneration: 1
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2026-09-04T14:31:29Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://f685c7a1ea3493d54c20e000ab64dbf8bbe3f055753f364d3dc172bc3b15177b
+      image: docker.io/library/mongo:8
+      imageID: docker.io/library/mongo@sha256:5211c51171f57ae60842b11664bb244628971b3d35325762a97888337b9bb0db
+      lastState:
+        terminated:
+          containerID: containerd://714e99cac4fb2feb6eba12c84a13181285c175ef60bd3110c7e0ebeb78b23645
+          exitCode: 255
+          finishedAt: "2026-09-06T08:33:01Z"
+          reason: Unknown
+          startedAt: "2026-09-05T17:17:30Z"
+      name: mongodb
+      ready: true
+      resources: {}
+      restartCount: 3
+      started: true
+      state:
+        running:
+          startedAt: "2026-09-06T08:33:16Z"
+      user:
+        linux:
+          gid: 0
+          supplementalGroups:
+          - 0
+          uid: 0
+      volumeMounts:
+      - mountPath: /data/db
+        name: mongodb-storage
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-m88bz
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 172.19.0.4
+    hostIPs:
+    - ip: 172.19.0.4
+    observedGeneration: 1
+    phase: Running
+    podIP: 10.244.2.8
+    podIPs:
+    - ip: 10.244.2.8
+    qosClass: BestEffort
+    startTime: "2026-09-04T14:31:29Z"
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"backend","namespace":"notes-app"},"spec":{"ports":[{"port":5000,"targetPort":5000}],"selector":{"app":"backend"},"type":"ClusterIP"}}
+    creationTimestamp: "2026-09-04T14:48:31Z"
+    name: backend
+    namespace: notes-app
+    resourceVersion: "906290"
+    uid: 09129437-f41a-4c94-873b-dcdfc5d5b088
+  spec:
+    clusterIP: 10.96.76.136
+    clusterIPs:
+    - 10.96.76.136
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - port: 5000
+      protocol: TCP
+      targetPort: 5000
+    selector:
+      app: backend
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"frontend","namespace":"notes-app"},"spec":{"ports":[{"port":80,"targetPort":80}],"selector":{"app":"frontend"},"type":"NodePort"}}
+    creationTimestamp: "2026-09-04T14:49:59Z"
+    name: frontend
+    namespace: notes-app
+    resourceVersion: "906442"
+    uid: c71ddddc-4c88-4007-ac07-997c8340d14f
+  spec:
+    clusterIP: 10.96.63.182
+    clusterIPs:
+    - 10.96.63.182
+    externalTrafficPolicy: Cluster
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - nodePort: 30873
+      port: 80
+      protocol: TCP
+      targetPort: 80
+    selector:
+      app: frontend
+    sessionAffinity: None
+    type: NodePort
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"mongo-express","namespace":"notes-app"},"spec":{"ports":[{"port":8081,"targetPort":8081}],"selector":{"app":"mongo-express"},"type":"NodePort"}}
+    creationTimestamp: "2026-09-04T17:12:27Z"
+    name: mongo-express
+    namespace: notes-app
+    resourceVersion: "920542"
+    uid: 48430b6f-02c3-45f9-be5d-8c4f37d87a31
+  spec:
+    clusterIP: 10.96.160.166
+    clusterIPs:
+    - 10.96.160.166
+    externalTrafficPolicy: Cluster
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - nodePort: 30715
+      port: 8081
+      protocol: TCP
+      targetPort: 8081
+    selector:
+      app: mongo-express
+    sessionAffinity: None
+    type: NodePort
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"mongodb","namespace":"notes-app"},"spec":{"ports":[{"port":27017,"targetPort":27017}],"selector":{"app":"mongodb"},"type":"ClusterIP"}}
+    creationTimestamp: "2026-09-04T14:45:42Z"
+    name: mongodb
+    namespace: notes-app
+    resourceVersion: "905997"
+    uid: 8b33ed32-951d-43fc-b6d5-afb6d042a443
+  spec:
+    clusterIP: 10.96.72.179
+    clusterIPs:
+    - 10.96.72.179
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - port: 27017
+      protocol: TCP
+      targetPort: 27017
+    selector:
+      app: mongodb
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "3"
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"name":"backend","namespace":"notes-app"},"spec":{"replicas":2,"selector":{"matchLabels":{"app":"backend"}},"template":{"metadata":{"labels":{"app":"backend"}},"spec":{"containers":[{"envFrom":[{"configMapRef":{"name":"config.yaml"}},{"secretRef":{"name":"secret.yaml"}}],"image":"emaanchaudhary/notes-webapp-backend:latest","imagePullPolicy":"Always","name":"backend","ports":[{"containerPort":5000}],"resources":{"limits":{"cpu":"500m","memory":"256Mi"},"requests":{"cpu":"100m","memory":"128Mi"}}}]}}}}
+    creationTimestamp: "2026-09-04T14:13:38Z"
+    generation: 3
+    name: backend
+    namespace: notes-app
+    resourceVersion: "935895"
+    uid: c50f6968-c274-4713-9e87-2254b51eae1b
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 2
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: backend
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          kubectl.kubernetes.io/restartedAt: "2026-09-04T22:44:58+05:00"
+        labels:
+          app: backend
+      spec:
+        containers:
+        - envFrom:
+          - configMapRef:
+              name: config.yaml
+          - secretRef:
+              name: secret.yaml
+          image: emaanchaudhary/notes-webapp-backend:latest
+          imagePullPolicy: Always
+          name: backend
+          ports:
+          - containerPort: 5000
+            protocol: TCP
+          resources:
+            limits:
+              cpu: 500m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 2
+    conditions:
+    - lastTransitionTime: "2026-09-06T08:34:07Z"
+      lastUpdateTime: "2026-09-06T08:34:07Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2026-09-06T08:44:07Z"
+      lastUpdateTime: "2026-09-06T08:44:07Z"
+      message: ReplicaSet "backend-6b85c4dc48" has timed out progressing.
+      reason: ProgressDeadlineExceeded
+      status: "False"
+      type: Progressing
+    observedGeneration: 3
+    readyReplicas: 2
+    replicas: 3
+    terminatingReplicas: 0
+    unavailableReplicas: 1
+    updatedReplicas: 1
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "2"
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"name":"frontend","namespace":"notes-app"},"spec":{"replicas":2,"selector":{"matchLabels":{"app":"frontend"}},"template":{"metadata":{"labels":{"app":"frontend"}},"spec":{"containers":[{"image":"emaanchaudhary/notes-webapp-frontend:latest","imagePullPolicy":"Always","name":"frontend","ports":[{"containerPort":80}]}]}}}}
+    creationTimestamp: "2026-09-04T14:38:31Z"
+    generation: 2
+    name: frontend
+    namespace: notes-app
+    resourceVersion: "934899"
+    uid: 7807ed06-204d-43d9-9535-6886faf95c13
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 2
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: frontend
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          kubectl.kubernetes.io/restartedAt: "2026-09-04T22:07:23+05:00"
+        labels:
+          app: frontend
+      spec:
+        containers:
+        - image: emaanchaudhary/notes-webapp-frontend:latest
+          imagePullPolicy: Always
+          name: frontend
+          ports:
+          - containerPort: 80
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 2
+    conditions:
+    - lastTransitionTime: "2026-09-04T14:38:31Z"
+      lastUpdateTime: "2026-09-04T17:07:37Z"
+      message: ReplicaSet "frontend-669cdc49f9" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    - lastTransitionTime: "2026-09-06T08:34:19Z"
+      lastUpdateTime: "2026-09-06T08:34:19Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    observedGeneration: 2
+    readyReplicas: 2
+    replicas: 2
+    terminatingReplicas: 0
+    updatedReplicas: 2
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "1"
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"name":"mongo-express","namespace":"notes-app"},"spec":{"replicas":1,"selector":{"matchLabels":{"app":"mongo-express"}},"template":{"metadata":{"labels":{"app":"mongo-express"}},"spec":{"containers":[{"env":[{"name":"ME_CONFIG_MONGODB_URL","value":"mongodb://mongodb:27017/"},{"name":"ME_CONFIG_BASICAUTH_ENABLED","value":"false"}],"image":"mongo-express:latest","name":"mongo-express","ports":[{"containerPort":8081}]}]}}}}
+    creationTimestamp: "2026-09-04T14:53:54Z"
+    generation: 1
+    name: mongo-express
+    namespace: notes-app
+    resourceVersion: "906908"
+    uid: a14f7ee4-b17c-44f6-9d9e-69b33f8816ce
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: mongo-express
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        labels:
+          app: mongo-express
+      spec:
+        containers:
+        - env:
+          - name: ME_CONFIG_MONGODB_URL
+            value: mongodb://mongodb:27017/
+          - name: ME_CONFIG_BASICAUTH_ENABLED
+            value: "false"
+          image: mongo-express:latest
+          imagePullPolicy: Always
+          name: mongo-express
+          ports:
+          - containerPort: 8081
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: "2026-09-04T14:54:24Z"
+      lastUpdateTime: "2026-09-04T14:54:24Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2026-09-04T14:53:54Z"
+      lastUpdateTime: "2026-09-04T14:54:24Z"
+      message: ReplicaSet "mongo-express-d9d8cbf9f" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    observedGeneration: 1
+    readyReplicas: 1
+    replicas: 1
+    terminatingReplicas: 0
+    updatedReplicas: 1
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "1"
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"name":"mongodb","namespace":"notes-app"},"spec":{"replicas":1,"selector":{"matchLabels":{"app":"mongodb"}},"template":{"metadata":{"labels":{"app":"mongodb"}},"spec":{"containers":[{"image":"mongo:8","name":"mongodb","ports":[{"containerPort":27017}],"volumeMounts":[{"mountPath":"/data/db","name":"mongodb-storage"}]}],"volumes":[{"name":"mongodb-storage","persistentVolumeClaim":{"claimName":"mongodb-pvc"}}]}}}}
+    creationTimestamp: "2026-09-04T14:31:25Z"
+    generation: 1
+    name: mongodb
+    namespace: notes-app
+    resourceVersion: "904596"
+    uid: 111dd3d3-b361-4b64-bcb5-682f26bdb9cb
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: mongodb
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        labels:
+          app: mongodb
+      spec:
+        containers:
+        - image: mongo:8
+          imagePullPolicy: IfNotPresent
+          name: mongodb
+          ports:
+          - containerPort: 27017
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /data/db
+            name: mongodb-storage
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - name: mongodb-storage
+          persistentVolumeClaim:
+            claimName: mongodb-pvc
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: "2026-09-04T14:33:46Z"
+      lastUpdateTime: "2026-09-04T14:33:46Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2026-09-04T14:31:25Z"
+      lastUpdateTime: "2026-09-04T14:33:46Z"
+      message: ReplicaSet "mongodb-85764464db" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    observedGeneration: 1
+    readyReplicas: 1
+    replicas: 1
+    terminatingReplicas: 0
+    updatedReplicas: 1
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "2"
+      deployment.kubernetes.io/max-replicas: "3"
+      deployment.kubernetes.io/revision: "3"
+    creationTimestamp: "2026-09-04T17:44:58Z"
+    generation: 2
+    labels:
+      app: backend
+      pod-template-hash: 6b85c4dc48
+    name: backend-6b85c4dc48
+    namespace: notes-app
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: backend
+      uid: c50f6968-c274-4713-9e87-2254b51eae1b
+    resourceVersion: "923777"
+    uid: 3d93800d-80ec-4d6f-9720-4f4e5188cfb0
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: backend
+        pod-template-hash: 6b85c4dc48
+    template:
+      metadata:
+        annotations:
+          kubectl.kubernetes.io/restartedAt: "2026-09-04T22:44:58+05:00"
+        labels:
+          app: backend
+          pod-template-hash: 6b85c4dc48
+      spec:
+        containers:
+        - envFrom:
+          - configMapRef:
+              name: config.yaml
+          - secretRef:
+              name: secret.yaml
+          image: emaanchaudhary/notes-webapp-backend:latest
+          imagePullPolicy: Always
+          name: backend
+          ports:
+          - containerPort: 5000
+            protocol: TCP
+          resources:
+            limits:
+              cpu: 500m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    fullyLabeledReplicas: 1
+    observedGeneration: 2
+    replicas: 1
+    terminatingReplicas: 0
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "2"
+      deployment.kubernetes.io/max-replicas: "3"
+      deployment.kubernetes.io/revision: "1"
+    creationTimestamp: "2026-09-04T14:13:38Z"
+    generation: 1
+    labels:
+      app: backend
+      pod-template-hash: 6c7b54749f
+    name: backend-6c7b54749f
+    namespace: notes-app
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: backend
+      uid: c50f6968-c274-4713-9e87-2254b51eae1b
+    resourceVersion: "934848"
+    uid: 92122c1e-1e42-4c89-942e-0e7fbf8433b7
+  spec:
+    replicas: 2
+    selector:
+      matchLabels:
+        app: backend
+        pod-template-hash: 6c7b54749f
+    template:
+      metadata:
+        labels:
+          app: backend
+          pod-template-hash: 6c7b54749f
+      spec:
+        containers:
+        - env:
+          - name: PORT
+            value: "5000"
+          - name: MONGODB_URI
+            value: mongodb://mongodb:27017/notesdb
+          - name: JWT_SECRET
+            value: notes
+          image: emaanchaudhary/notes-webapp-backend:latest
+          imagePullPolicy: Always
+          name: backend
+          ports:
+          - containerPort: 5000
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 2
+    fullyLabeledReplicas: 2
+    observedGeneration: 1
+    readyReplicas: 2
+    replicas: 2
+    terminatingReplicas: 0
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "2"
+      deployment.kubernetes.io/max-replicas: "3"
+      deployment.kubernetes.io/revision: "2"
+    creationTimestamp: "2026-09-04T17:44:39Z"
+    generation: 2
+    labels:
+      app: backend
+      pod-template-hash: 8595c7bf67
+    name: backend-8595c7bf67
+    namespace: notes-app
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: backend
+      uid: c50f6968-c274-4713-9e87-2254b51eae1b
+    resourceVersion: "923801"
+    uid: 81d0b880-9d28-450e-988c-0bd6b2fd0485
+  spec:
+    replicas: 0
+    selector:
+      matchLabels:
+        app: backend
+        pod-template-hash: 8595c7bf67
+    template:
+      metadata:
+        labels:
+          app: backend
+          pod-template-hash: 8595c7bf67
+      spec:
+        containers:
+        - envFrom:
+          - configMapRef:
+              name: config.yaml
+          - secretRef:
+              name: secret.yaml
+          image: emaanchaudhary/notes-webapp-backend:latest
+          imagePullPolicy: Always
+          name: backend
+          ports:
+          - containerPort: 5000
+            protocol: TCP
+          resources:
+            limits:
+              cpu: 500m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    observedGeneration: 2
+    replicas: 0
+    terminatingReplicas: 0
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "2"
+      deployment.kubernetes.io/max-replicas: "3"
+      deployment.kubernetes.io/revision: "2"
+    creationTimestamp: "2026-09-04T17:07:23Z"
+    generation: 2
+    labels:
+      app: frontend
+      pod-template-hash: 669cdc49f9
+    name: frontend-669cdc49f9
+    namespace: notes-app
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: frontend
+      uid: 7807ed06-204d-43d9-9535-6886faf95c13
+    resourceVersion: "934898"
+    uid: bbffab0f-6ef5-4b99-ab42-93e13c0dd0ed
+  spec:
+    replicas: 2
+    selector:
+      matchLabels:
+        app: frontend
+        pod-template-hash: 669cdc49f9
+    template:
+      metadata:
+        annotations:
+          kubectl.kubernetes.io/restartedAt: "2026-09-04T22:07:23+05:00"
+        labels:
+          app: frontend
+          pod-template-hash: 669cdc49f9
+      spec:
+        containers:
+        - image: emaanchaudhary/notes-webapp-frontend:latest
+          imagePullPolicy: Always
+          name: frontend
+          ports:
+          - containerPort: 80
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 2
+    fullyLabeledReplicas: 2
+    observedGeneration: 2
+    readyReplicas: 2
+    replicas: 2
+    terminatingReplicas: 0
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "2"
+      deployment.kubernetes.io/max-replicas: "3"
+      deployment.kubernetes.io/revision: "1"
+    creationTimestamp: "2026-09-04T14:38:31Z"
+    generation: 3
+    labels:
+      app: frontend
+      pod-template-hash: 7f749bb77c
+    name: frontend-7f749bb77c
+    namespace: notes-app
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: frontend
+      uid: 7807ed06-204d-43d9-9535-6886faf95c13
+    resourceVersion: "920066"
+    uid: 8690907c-e65d-415d-8ac0-14a5fbcf67a9
+  spec:
+    replicas: 0
+    selector:
+      matchLabels:
+        app: frontend
+        pod-template-hash: 7f749bb77c
+    template:
+      metadata:
+        labels:
+          app: frontend
+          pod-template-hash: 7f749bb77c
+      spec:
+        containers:
+        - image: emaanchaudhary/notes-webapp-frontend:latest
+          imagePullPolicy: Always
+          name: frontend
+          ports:
+          - containerPort: 80
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    observedGeneration: 3
+    replicas: 0
+    terminatingReplicas: 0
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "1"
+    creationTimestamp: "2026-09-04T14:53:54Z"
+    generation: 1
+    labels:
+      app: mongo-express
+      pod-template-hash: d9d8cbf9f
+    name: mongo-express-d9d8cbf9f
+    namespace: notes-app
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: mongo-express
+      uid: a14f7ee4-b17c-44f6-9d9e-69b33f8816ce
+    resourceVersion: "906907"
+    uid: a8c17fed-0ac8-4821-9b0e-93134ae27791
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: mongo-express
+        pod-template-hash: d9d8cbf9f
+    template:
+      metadata:
+        labels:
+          app: mongo-express
+          pod-template-hash: d9d8cbf9f
+      spec:
+        containers:
+        - env:
+          - name: ME_CONFIG_MONGODB_URL
+            value: mongodb://mongodb:27017/
+          - name: ME_CONFIG_BASICAUTH_ENABLED
+            value: "false"
+          image: mongo-express:latest
+          imagePullPolicy: Always
+          name: mongo-express
+          ports:
+          - containerPort: 8081
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    fullyLabeledReplicas: 1
+    observedGeneration: 1
+    readyReplicas: 1
+    replicas: 1
+    terminatingReplicas: 0
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "1"
+    creationTimestamp: "2026-09-04T14:31:25Z"
+    generation: 1
+    labels:
+      app: mongodb
+      pod-template-hash: 85764464db
+    name: mongodb-85764464db
+    namespace: notes-app
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: mongodb
+      uid: 111dd3d3-b361-4b64-bcb5-682f26bdb9cb
+    resourceVersion: "904595"
+    uid: 3ea5c6be-43c3-40eb-89c9-d3bb8e3e5274
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: mongodb
+        pod-template-hash: 85764464db
+    template:
+      metadata:
+        labels:
+          app: mongodb
+          pod-template-hash: 85764464db
+      spec:
+        containers:
+        - image: mongo:8
+          imagePullPolicy: IfNotPresent
+          name: mongodb
+          ports:
+          - containerPort: 27017
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /data/db
+            name: mongodb-storage
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - name: mongodb-storage
+          persistentVolumeClaim:
+            claimName: mongodb-pvc
+  status:
+    availableReplicas: 1
+    fullyLabeledReplicas: 1
+    observedGeneration: 1
+    readyReplicas: 1
+    replicas: 1
+    terminatingReplicas: 0
+kind: List
+metadata:
+  resourceVersion: ""
